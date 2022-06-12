@@ -465,7 +465,6 @@ c set switches for NRLMSIS00
         nummax=1000
         DO 7397 KI=1,20
         do 7397 kk=1,nummax
-
 7397    OUTF(KI,kk)=-1.
 C
 C oarr(1:6,10,15,16,33,35,39,41,46,89,90) are used for inputs
@@ -2336,16 +2335,6 @@ c     &	f107365,pf107,cov-f10781,cov-f107365,cov-pf107
 c10201	format(I5,11F6.1)
 
        icalls=icalls+1
-
-        print *, "Hello From IRI_SUB"
-        DO i = 1,20
-          DO j = 1,1000
-          if (i .le. 1) then
-            write(*,'(A5I4A1I4A4F20.6)')
-     &    "OUTF(", i,",",j,") = ", OUTF(i,j)
-          endif
-          ENDDO
-        ENDDO
 
       RETURN
       END

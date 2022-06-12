@@ -15,6 +15,7 @@ extern void iri_sub_(int jf[50],
                      float oarr[100]);
 
 int main() {
+  FILE *fp;
   printf("Hello, World!\n");
   read_ig_rz_();
   readapf107_();
@@ -28,10 +29,12 @@ int main() {
   float time   = 11.0;
   float heibeg = 80.0;
   float heiend = 1500.0;
+  float heinc  = (heiend - heibeg)/999.0;
   float heistp = 1.0;
   float outf[20000];
   float outfc[20][1000];
   float oarr[100];
+  float alt[1000];
 
   jf[0]        = 1;
   jf[1]        = 1;
@@ -87,6 +90,12 @@ int main() {
 
          iri_sub_(jf, &jmag, &alat, &along, &iyear, &idate, &time, &heibeg, &heiend, &heistp, outf, oarr);
 
+         for (int k=0; k<1000; k++){
+           alt[k] = heibeg + k*heinc;
+         }
+
+         printf("%s%f\n", "alt[999] = ", alt[999]);
+
          for (int j = 0; j<20; j++) {
            for (int i=0; i < 1000; i++) {
              outfc[j][i] = outf[j+(i*20)];
@@ -94,8 +103,16 @@ int main() {
          //   printf("%s%d%s%f\n","outfc[0][", i, "] = ", outf[(i)*20]);
          }
          for (int k = 0; k<1000;k++) {
-           printf("%s%d%s%f\n","outfc[0][", k, "] = ", outfc[0][k]);
+//           printf("%s%d%s%f\n","outfc[0][", k, "] = ", outfc[0][k]);
          }
  
+
+         fp = fopen("data.dat","w+");
+
+         for (int k = 0; k<1000;k++) {
+           fprintf(fp,"%f\t%f\n",alt[k],outfc[0][k]);
+         }
+         fclose(fp);
+
   return 0;
 }

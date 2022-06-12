@@ -8,3 +8,7 @@ objects := $(filter-out iritest.o irirtam-test.o, $(objects))
 libiri : $(objects)
 	gfortran -shared -o libiri.so $(objects)
 
+.PHONY: clean
+
+clean:
+	rm *.o libiri.so testiri
