@@ -11,9 +11,9 @@ Steps:
 
 - clone this repository git clone https://github.com/tjdphd/ert.git
 - in a mac terminal execute \code make
-- execute \code .\testiri
-- execute gnuplot plotNe.gp
-- execute ps2pdf AltVsNe03032021.ps
-- execute ps2pdf AltVsNe03042021.ps
+- execute ```.\testiri```
+- execute ```gnuplot plotNe.gp```
+- execute ```ps2pdf AltVsNe03032021.ps```
+- execute ```ps2pdf AltVsNe03042021.ps```
 
 
