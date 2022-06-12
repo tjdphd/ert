@@ -10,7 +10,8 @@ but any errors arising should only required modest edits to the sources.
 Steps:
 
 - clone this repository git clone https://github.com/tjdphd/ert.git
-- in a mac terminal execute \code make
+- navigate to the repository in a mac terminal
+- execute ```make```
 - execute ```.\testiri```
 - execute ```gnuplot plotNe.gp```
 - execute ```ps2pdf AltVsNe03032021.ps```
