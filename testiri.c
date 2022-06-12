@@ -15,8 +15,8 @@ extern void iri_sub_(int jf[50],
                      float oarr[100]);
 
 int main() {
-  FILE *fp;
-  printf("Hello, World!\n");
+  FILE *fp1;
+  FILE *fp2;
   read_ig_rz_();
   readapf107_();
 
@@ -25,14 +25,18 @@ int main() {
   float alat   = 37.8;
   float along  = 360.0 - 75.4;
   int iyear    = 2021;
-  int idate    =303;
-  float time   = 11.0;
+  int idate1   = 303;
+  int idate2   = 304;
+  float time1  = 11.0;
+  float time2  = 23.0;
   float heibeg = 80.0;
   float heiend = 1500.0;
   float heinc  = (heiend - heibeg)/999.0;
   float heistp = 1.0;
-  float outf[20000];
-  float outfc[20][1000];
+  float outf1[20000];
+  float outf2[20000];
+  float outfc1[20][1000];
+  float outfc2[20][1000];
   float oarr[100];
   float alt[1000];
 
@@ -88,31 +92,30 @@ int main() {
   jf[48]       = 0;
   jf[49]       = 0;
 
-         iri_sub_(jf, &jmag, &alat, &along, &iyear, &idate, &time, &heibeg, &heiend, &heistp, outf, oarr);
+         iri_sub_(jf, &jmag, &alat, &along, &iyear, &idate1, &time1, &heibeg, &heiend, &heistp, outf1, oarr);
+         iri_sub_(jf, &jmag, &alat, &along, &iyear, &idate2, &time2, &heibeg, &heiend, &heistp, outf2, oarr);
 
          for (int k=0; k<1000; k++){
            alt[k] = heibeg + k*heinc;
          }
 
-         printf("%s%f\n", "alt[999] = ", alt[999]);
-
          for (int j = 0; j<20; j++) {
            for (int i=0; i < 1000; i++) {
-             outfc[j][i] = outf[j+(i*20)];
+             outfc1[j][i] = outf1[j+(i*20)];
+             outfc2[j][i] = outf2[j+(i*20)];
            }
-         //   printf("%s%d%s%f\n","outfc[0][", i, "] = ", outf[(i)*20]);
-         }
-         for (int k = 0; k<1000;k++) {
-//           printf("%s%d%s%f\n","outfc[0][", k, "] = ", outfc[0][k]);
          }
  
-
-         fp = fopen("data.dat","w+");
+         fp1 = fopen("data1.dat","w+");
+         fp2 = fopen("data2.dat","w+");
 
          for (int k = 0; k<1000;k++) {
-           fprintf(fp,"%f\t%f\n",alt[k],outfc[0][k]);
+           fprintf(fp1,"%f\t%f\n",alt[k],outfc1[0][k]);
+           fprintf(fp2,"%f\t%f\n",alt[k],outfc2[0][k]);
          }
-         fclose(fp);
+
+         fclose(fp1);
+         fclose(fp2);
 
   return 0;
 }

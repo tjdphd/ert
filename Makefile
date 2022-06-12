@@ -11,4 +11,4 @@ libiri : $(objects)
 .PHONY: clean
 
 clean:
-	rm *.o libiri.so testiri
+	rm -f *.o libiri.so testiri
