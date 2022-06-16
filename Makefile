@@ -1,5 +1,5 @@
 testiri: libiri testiri.c
-	cc -L. -o testiri -liri testiri.c -liri
+	gcc -L. -o testiri -liri testiri.c
 %.o:	%.for
 	gfortran -fpic -c -o $@ $< 
 objects := $(patsubst %.for,%.o, $(wildcard *.for))
